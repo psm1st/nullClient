@@ -1,10 +1,14 @@
 import { useState } from 'react';
 
-function TextField() {
+function TextField({ onTextChange }) {
   const [text, setText] = useState('');
 
   const handleInputChange = (e) => {
-    setText(e.target.value);
+    const newText = e.target.value;
+    setText(newText);
+    if (onTextChange) {
+      onTextChange(newText);
+    }
   };
 
   const hasText = text.trim().length > 0;
