@@ -1,5 +1,4 @@
 import TextField from './components/TextField'
-import './App.css'
 
 function App() {
   return (
