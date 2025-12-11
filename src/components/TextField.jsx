@@ -1,17 +1,29 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
-function TextField({ onTextChange }) {
-  const [text, setText] = useState('');
+function TextField({ onTextChange, onSend }) {
+  const [text, setText] = useState('')
 
   const handleInputChange = (e) => {
-    const newText = e.target.value;
-    setText(newText);
+    const newText = e.target.value
+    setText(newText)
     if (onTextChange) {
-      onTextChange(newText);
+      onTextChange(newText)
     }
-  };
+  }
 
-  const hasText = text.trim().length > 0;
+  const handleSend = () => {
+    const trimmed = text.trim()
+    if (!trimmed) return
+    if (onSend) {
+      onSend(trimmed)
+    }
+    setText('')
+    if (onTextChange) {
+      onTextChange('')
+    }
+  }
+
+  const hasText = text.trim().length > 0
 
   return (
     <div className="fixed bottom-0 left-0 right-0 w-full p-6 bg-white border-t border-black flex justify-center items-center gap-2.5">
@@ -23,22 +35,19 @@ function TextField({ onTextChange }) {
           className="w-full h-full bg-transparent border-none outline-none text-neutral-400 text-2xl font-normal font-['Apple_SD_Gothic_Neo'] placeholder:text-neutral-400 resize-none overflow-y-auto"
         />
       </div>
-      <div
-        className={`w-40 h-20 p-4 flex justify-center items-center gap-2.5 ${
-          hasText ? 'bg-cyan-400' : 'bg-zinc-100'
+      <button
+        type="button"
+        onClick={handleSend}
+        disabled={!hasText}
+        className={`w-40 h-20 p-4 flex justify-center items-center gap-2.5 transition ${
+          hasText ? 'bg-cyan-400 text-black font-bold' : 'bg-zinc-100 text-neutral-400 font-normal cursor-not-allowed'
         }`}
       >
-        <div
-          className={`text-center justify-start text-2xl font-['Apple_SD_Gothic_Neo'] ${
-            hasText ? 'text-black font-bold' : 'text-neutral-400 font-normal'
-          }`}
-        >
-          보내기
-        </div>
-      </div>
+        <div className="text-center justify-start text-2xl font-['Apple_SD_Gothic_Neo']">보내기</div>
+      </button>
     </div>
-  );
+  )
 }
 
-export default TextField;
+export default TextField
 
