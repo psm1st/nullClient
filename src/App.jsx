@@ -136,8 +136,17 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#a5a5a5] flex flex-col">
-      <div className="relative flex-1 w-full flex justify-center">
+    <div className="min-h-screen bg-white flex flex-col">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-black">
+        <div className="w-full max-w-[1920px] mx-auto px-6 py-6 flex flex-col items-center justify-center gap-3">
+          <img src="/title.svg" alt="title" className="h-20 w-auto object-contain" />
+          <span className="text-black text-lg font-normal font-['Apple_SD_Gothic_Neo'] text-center whitespace-nowrap">
+            ✷ 무엇이든 될 수 있는 (                 ) 의 졸업을 축하해 주세요! ✷
+          </span>
+        </div>
+      </header>
+
+      <div className="relative flex-1 w-full flex justify-center pt-40">
         <div className="w-full max-w-[1872px] px-6 py-8">
           <div className="flex flex-wrap gap-3">
             {cards.map((card) => (
